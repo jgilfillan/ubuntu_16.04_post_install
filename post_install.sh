@@ -42,10 +42,23 @@ set -x  #echo on
 #  git clone https://jgilfillan@bitbucket.org/jgilfillan/tnsadmin.git
 #  sudo mv ./tnsadmin/tnsnames.ora /usr/lib/oracle/11.2/client64/network/admin/
 #  sudo mv ./tnsadmin/sqlnet.ora /usr/lib/oracle/11.2/client64/network/admin/
-export PATH="$PATH:/usr/lib/oracle/11.2/client64/bin"
-export ORACLE_HOME="/usr/lib/oracle/11.2/client64"
-export OCI_LIB="/usr/lib/oracle/11.2/client64/lib"
-export TNS_ADMIN="/usr/lib/oracle/11.2/client64/network/admin"
-echo "/usr/lib/oracle/11.2/client64/lib" | sudo tee /etc/ld.so.conf.d/oracle.conf
-sudo ldconfig -v
-sudo apt install -f libaio1
+
+
+#  sudo cp /etc/environment /etc/environment.bkp
+#  sed "s/^\(PATH.*\)\"$/\1:\/usr\/lib\/oracle\/11.2\/client64\/bin\"/g" /etc/environment > environment.new
+#  echo ORACLE_HOME="/usr/lib/oracle/11.2/client64" >> environment.new
+#  echo OCI_LIB="/usr/lib/oracle/11.2/client64/lib" >> environment.new
+#  echo TNS_ADMIN="/usr/lib/oracle/11.2/client64/network/admin" >> environment.new
+#  cat environment.new
+#  sudo cp environment.new /etc/environment
+#  echo "/usr/lib/oracle/11.2/client64/lib" | sudo tee /etc/ld.so.conf.d/oracle.conf
+#  sudo ldconfig -v
+# sudo apt install -f libaio1
+
+# VPN Software
+# # wget https://intranet.secure.griffith.edu.au/__data/assets/file/0007/547414/anyconnect-predeploy-linux-64-4.2.00096-k9.tar.gz
+# # tar zxvf anyconnect-predeploy-linux-64-4.2.00096-k9.tar.gz
+# # cd anyconnect-4.2.00096/vpn/
+# # sudo ./vpn_install.sh
+# # cd ~/post_install/
+sudo apt install -assume-yes network-manager-openconnect
